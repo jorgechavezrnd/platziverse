@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/jorgechavezrnd/platziverse.git"
   },
-  "author": "Jorge Carlos Chavez Ruiz",
+  "author": "Jorge Carlos Chavez Ruiz <jorgechavezrnd@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jorgechavezrnd/platziverse/issues"
