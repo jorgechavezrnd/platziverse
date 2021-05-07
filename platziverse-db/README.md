@@ -14,5 +14,10 @@ setupDatabase(config).then(db => {
 - `npm run lint`
 - `npm run lint -- --fix`
 
+## Commands for test module
+- `node`
+- `const setupDatabase = require('./')`
+- `setupDatabase()`
+
 ## Commands for install dependencies
 - `npm i --save-dev standard`
