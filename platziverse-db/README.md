@@ -21,3 +21,4 @@ setupDatabase(config).then(db => {
 
 ## Commands for install dependencies
 - `npm i --save-dev standard`
+- `npm i sequelize pg pg-hstore --save`
