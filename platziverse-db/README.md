@@ -34,7 +34,7 @@ setupDatabase(config).then(db => {
 - `docker exec -it postgres_server bash`
 - `su - postgres`
 - `psql -U platzi platziverse`
-- No password should be required, the password is 'platzi'
+- Now password should be required, the password is 'platzi'
 
 ## Commands for login in platziverse database with platzi user
 - `docker exec -it postgres_server bash`
