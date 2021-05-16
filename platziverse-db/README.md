@@ -46,6 +46,7 @@ setupDatabase(config).then(db => {
 - Fix lint errors: `npm run lint -- --fix`
 - Setup database: `npm run setup`
 - Run setup script with intentional error, for see the error message using 'chalk' library: `DB_PASS='foo' npm run setup`
+- Run tests: `npm test`
 
 ## Commands for test module
 - `node`
