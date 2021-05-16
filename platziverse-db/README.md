@@ -62,3 +62,5 @@ setupDatabase(config).then(db => {
 - `npm i --save defaults`
 - `npm i sqlite3 --save-dev`
 - `npm i nyc --save-dev`
+- `npm install --save-dev sinon`
+- `npm i proxyquire --save-dev`
