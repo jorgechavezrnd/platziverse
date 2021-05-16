@@ -46,7 +46,7 @@ setupDatabase(config).then(db => {
 - Fix lint errors: `npm run lint -- --fix`
 - Setup database: `npm run setup`
 - Run setup script with intentional error, for see the error message using 'chalk' library: `DB_PASS='foo' npm run setup`
-- Run tests: `npm test`
+- Run tests, we use 'nyc' module for code coverage, and the coverage report in HTML will be located in 'coverage/lcov-report/index.html' after run this command: `npm test`
 
 ## Commands for test module
 - `node`
@@ -61,3 +61,4 @@ setupDatabase(config).then(db => {
 - `npm install --save-dev ava`
 - `npm i --save defaults`
 - `npm i sqlite3 --save-dev`
+- `npm i nyc --save-dev`
