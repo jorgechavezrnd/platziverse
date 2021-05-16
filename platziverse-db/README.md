@@ -57,3 +57,6 @@ setupDatabase(config).then(db => {
 - `npm i sequelize pg pg-hstore --save`
 - `npm i debug --save`
 - `npm i inquirer chalk --save`
+- `npm install --save-dev ava`
+- `npm i --save defaults`
+- `npm i sqlite3 --save-dev`
