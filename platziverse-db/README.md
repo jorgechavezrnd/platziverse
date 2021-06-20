@@ -53,6 +53,24 @@ setupDatabase(config).then(db => {
 - `const setupDatabase = require('./')`
 - `setupDatabase()`
 
+## Commands for test agent fixtures
+- `node`
+- `var agentFixtures = require('./tests/fixtures/agent')`
+- `agentFixtures.single`
+- `agentFixtures.platzi`
+- `agentFixtures.byId(1)`
+
+## Commands for run a simple example with sinon
+- `node`
+- `var sinon = require('sinon')`
+- `var findById = sinon.stub()`
+- `findById()`
+- `findById(1)`
+- `findById.withArgs(1).returns('platzi')`
+- `findById.withArgs(2).returns('jotason')`
+- `findById(1)`
+- `findById(2)`
+
 ## Commands for install dependencies
 - `npm i --save-dev standard`
 - `npm i sequelize pg pg-hstore --save`
