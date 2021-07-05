@@ -18,7 +18,7 @@ async function setup () {
         message: 'This will destroy your database, are you sure?'
       }
     ])
-  
+
     if (!answer.setup) {
       return console.log('Nothing happened :)')
     }
