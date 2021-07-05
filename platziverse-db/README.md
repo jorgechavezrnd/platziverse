@@ -47,6 +47,7 @@ setupDatabase(config).then(db => {
 - Setup database: `npm run setup`
 - Run setup script with intentional error, for see the error message using 'chalk' library: `DB_PASS='foo' npm run setup`
 - Run tests, we use 'nyc' module for code coverage, and the coverage report in HTML will be located in 'coverage/lcov-report/index.html' after run this command: `npm test`
+- Run setup database without confirmation question: `npm run setup -- --yes` or `npm run setup -- -y`
 
 ## Commands for test module
 - `node`
