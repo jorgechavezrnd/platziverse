@@ -38,3 +38,6 @@
   timestamp // generar cuando creamos el mensaje
 }
 ```
+
+## Command for initialize project with npm
+- `npm init`
