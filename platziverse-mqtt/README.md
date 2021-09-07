@@ -48,6 +48,11 @@
 ## Command for initialize project with npm
 - `npm init`
 
+## Commands for run some tests with mqtt package
+- `mqtt publish -t 'agent/message' -h localhost -m 'hello platziverse'`
+- `mqtt publish -t 'agent/message' -h localhost -m '{"hello": "platziverse"}'`
+
 ## Commands for install dependencies
 - `npm i --save-dev standard nodemon`
 - `npm i --save debug aedes aedes-persistence-redis chalk`
+- `npm install -g mqtt`

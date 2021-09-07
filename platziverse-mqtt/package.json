@@ -27,6 +27,7 @@
     "aedes": "^0.46.1",
     "aedes-persistence-redis": "^8.0.1",
     "chalk": "^4.1.2",
+    "platziverse-db": "file:../platziverse-db",
     "debug": "^4.3.2"
   }
 }
