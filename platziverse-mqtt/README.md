@@ -51,6 +51,7 @@
 ## Commands for run some tests with mqtt package
 - `mqtt publish -t 'agent/message' -h localhost -m 'hello platziverse'`
 - `mqtt publish -t 'agent/message' -h localhost -m '{"hello": "platziverse"}'`
+- `mqtt pub -t 'agent/message' -m 'hello'`
 
 ## Commands for install dependencies
 - `npm i --save-dev standard nodemon`
