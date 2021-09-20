@@ -7,6 +7,10 @@ const db = require('platziverse-db')
 
 const { parsePayload } = require('./utils')
 
+// Aedes is a barebone MQTT Server that can run on any stream server
+// See https://github.com/moscajs/aedes
+// redisPersistence to make aedes backend with redis
+// https://www.npmjs.com/package/aedes-persistence-redis
 const redisPersistence = require('aedes-persistence-redis')
 const aedes = require('aedes')({
   persistence: redisPersistence({
@@ -26,7 +30,13 @@ const config = {
   logging: s => debug(s)
 }
 
+// The server is implemented with `net` core module that expose a createServer method
+// The net module provides an asynchronous network API for create stream-based
+// TCP or IPC servers (net.createServer()) and clients (net.createConnection()).
+// See https://nodejs.org/api/net.html#net_event_connection
 const server = net.createServer(aedes.handle)
+
+// Map to store clients connected
 const clients = new Map()
 
 let Agent, Metric
@@ -132,17 +142,27 @@ aedes.on('publish', async (packet, client) => {
           })
         }
 
-        // Store Metrics
-        for (const metric of payload.metrics) {
-          let m
+        // Here the logic to store metrics
+        // With map we try to save the metrics parallelly.
+        // `map` accepts a sync callback so it returns an array of promises
+        // then wait until all the promises are solved and store them into
+        // `resolvedPromises` array. At the end we log all the ids of each saved
+        // metric and its associated agent
+        try {
+          const promises = payload.metrics.map(async (metric) => {
+            const createdMetric = await Metric.create(agent.uuid, metric)
+            return createdMetric
+          })
 
-          try {
-            m = await Metric.create(agent.uuid, metric)
-          } catch (e) {
-            return handleError(e)
-          }
+          const resolvedPromises = await Promise.all(promises)
 
-          debug(`Metric ${m.id} saved on agent ${agent.uuid}`)
+          resolvedPromises.forEach((metric) => {
+            debug(
+              `[saved-metric]: Metric ${metric.id} saved with Agent ${agent.uuid}`
+            )
+          })
+        } catch (error) {
+          handleError(error)
         }
       }
       break
