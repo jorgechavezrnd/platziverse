@@ -11,6 +11,13 @@ const agent = new PlatziverseAgent({
 
 agent.connect()
 
+// This agent only
+agent.on('connected')
+agent.on('disconnected')
+agent.on('message')
+
+agent.on('agent/connected')
+agent.on('agent/disconnected')
 agent.on('agent/message', payload => {
   console.log(payload)
 })
@@ -32,3 +39,5 @@ setTimeout(() => agent.disconnect(), 20000)
 
 ## Commands for install dependencies
 - `npm i standard --save-dev`
+- `npm install mqtt debug defaults --save`
+- `npm install --save uuid`
