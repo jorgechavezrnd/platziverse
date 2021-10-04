@@ -32,11 +32,14 @@ agent.on('connected', handler)
 agent.on('disconnected', handler)
 agent.on('message', handler)
 
+// Other Agents
 agent.on('agent/connected', handler)
 agent.on('agent/disconnected', handler)
-agent.on('agent/message', payload => {
+agent.on('agent/message', handler)
+
+function handler (payload) {
   console.log(payload)
-})
+}
 
 setTimeout(() => agent.disconnect(), 20000)
 ```
@@ -59,6 +62,11 @@ setTimeout(() => agent.disconnect(), 20000)
 - node
 - os.hostname()
 - .exit
+
+## Commands for execute code with example about how to use PlatziverseAgent
+- Start containers for postgres and redis: `docker start postgres_server redis_server`
+- Start platziverse-mqtt service (in platziverse-mqtt directory): `npm run start-dev`
+- Run platziverse-agent example (similar to the example in this file, README.md): `node examples/index.js`
 
 ## Commands for run scripts
 - Check lint: `npm run lint`

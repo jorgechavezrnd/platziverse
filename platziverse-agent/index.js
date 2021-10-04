@@ -31,15 +31,15 @@ class PlatziverseAgent extends EventEmitter {
     this._metrics = new Map()
   }
 
-  addMetric(type, fn) {
+  addMetric (type, fn) {
     this._metrics.set(type, fn)
   }
 
-  removeMetric(type) {
+  removeMetric (type) {
     this._metrics.delete(type)
   }
 
-  connect() {
+  connect () {
     if (!this._started) {
       const opts = this._options
       this._client = mqtt.connect(opts.mqtt.host)
@@ -56,7 +56,7 @@ class PlatziverseAgent extends EventEmitter {
 
         this._timer = setInterval(async () => {
           if (this._metrics.size > 0) {
-            let message = {
+            const message = {
               agent: {
                 uuid: this._agentId,
                 username: opts.username,
@@ -67,23 +67,23 @@ class PlatziverseAgent extends EventEmitter {
               metrics: [],
               timestamp: new Date().getTime()
             }
-          }
 
-          for (let [ metric, fn ] of this._metrics) {
-            if (fn.length == 1) {
-              fn = util.promisify(fn)
+            for (let [metric, fn] of this._metrics) {
+              if (fn.length === 1) {
+                fn = util.promisify(fn)
+              }
+  
+              message.metrics.push({
+                type: metric,
+                value: await Promise.resolve(fn())
+              })
             }
-
-            message.metrics.push({
-              type: metric,
-              value: await Promise.resolve(fn())
-            })
+  
+            debug('Sending', message)
+  
+            this._client.publish('agent/message', JSON.stringify(message))
+            this.emit('message', message)
           }
-
-          debug('Sending', message)
-
-          this._client.publish('agent/message', JSON.stringify(message))
-          this.emit('message', message)
         }, opts.interval)
       })
 
@@ -109,7 +109,7 @@ class PlatziverseAgent extends EventEmitter {
     }
   }
 
-  disconnect() {
+  disconnect () {
     if (this._started) {
       clearInterval(this._timer)
       this._started = false
