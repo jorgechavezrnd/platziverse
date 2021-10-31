@@ -1,5 +1,9 @@
 # platziverse-api
 
+## Commands for run scripts
+- Check lint: `npm run lint`
+- Start server on dev mode: `npm run start-dev`
+
 ## Commands for install dependencies
 - `npm i standard nodemon --save-dev`
 - `npm install express debug --save`
