@@ -46,7 +46,7 @@ test.beforeEach(async () => {
   MetricStub.findByTypeAgentUuid.withArgs(type, uuid).returns(Promise.resolve(metricFixtures.findByTypeAgentUuid(type, uuid)))
   MetricStub.findByTypeAgentUuid.withArgs(type, wrongUuid).returns(Promise.resolve(null))
 
-  token = await sign({ admin: true, username: 'platzi' }, config.auth.secret)
+  token = await sign({ permissions: ['metrics:read'], admin: true, username: 'platzi' }, config.auth.secret)
 
   const api = proxyquire('../api', {
     'platziverse-db': dbStub
