@@ -121,6 +121,20 @@ test.serial.cb('/api/agent/:uuid - not found', t => {
     })
 })
 
+test.serial.cb('/api/agent/:uuid - not authorized', t => {
+  request(server)
+    .get(`/api/agent/${wrongUuid}`)
+    .expect(401)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        console.log(err)
+      }
+      t.is(res.status, 401, `Error must be Unauthorized User`)
+      t.end()
+    })
+})
+
 test.serial.cb('/api/metrics/:uuid', t => {
   request(server)
     .get(`/api/metrics/${uuid}`)
@@ -152,6 +166,20 @@ test.serial.cb('/api/metrics/:uuid - not found', t => {
     })
 })
 
+test.serial.cb('/api/metrics/:uuid - not authorized', t => {
+  request(server)
+    .get(`/api/metrics/${wrongUuid}`)
+    .expect(401)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        console.log(err)
+      }
+      t.is(res.status, 401, `Error must be Unauthorized User`)
+      t.end()
+    })
+})
+
 test.serial.cb('/api/metrics/:uuid/:type', t => {
   request(server)
     .get(`/api/metrics/${uuid}/${type}`)
@@ -179,6 +207,20 @@ test.serial.cb('/api/metrics/:uuid/:type - not found', t => {
       }
       t.truthy(res.body.error, 'should return an error')
       t.regex(res.body.error, /not found/, 'Error should contains not found')
+      t.end()
+    })
+})
+
+test.serial.cb('/api/metrics/:uuid/:type - not authorized', t => {
+  request(server)
+    .get(`/api/metrics/${wrongUuid}/${type}`)
+    .expect(401)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      if (err) {
+        console.log(err)
+      }
+      t.is(res.status, 401, `Error must be Unauthorized User`)
       t.end()
     })
 })
