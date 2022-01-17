@@ -7,12 +7,13 @@ const express = require('express')
 const socketio = require('socket.io')
 const chalk = require('chalk')
 const PlatziverseAgent = require('platziverse-agent')
-
-const proxy = require('./proxy')
 const { pipe } = require('./utils')
+const proxy = require('./proxy')
+const asyncify = require('express-asyncify')
 
 const port = process.env.PORT || 8080
-const app = express()
+const app = asyncify(express())
+// Utilizando como reqquest handler a app de express
 const server = http.createServer(app)
 const io = socketio(server)
 const agent = new PlatziverseAgent()
@@ -20,7 +21,8 @@ const agent = new PlatziverseAgent()
 app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', proxy)
 
-// Socket.io / WebSockets
+// WebSockets
+
 io.on('connect', socket => {
   debug(`Connected ${socket.id}`)
 
@@ -28,23 +30,18 @@ io.on('connect', socket => {
 })
 
 // Express Error Handler
-app.use((err, req, res, next) => {
-  debug(`Error: ${err.message}`)
-
-  if (err.message.match(/not found/)) {
-    return res.status(404).send({ error: err.message })
+app.use((error, req, res, next) => {
+  debug(`Error: ${error.message}`)
+  if (error.message.match(/not found/)) {
+    return res.status(404).send({ error: error.message })
   }
 
-  if (err.name === 'UnauthorizedError') {
-    return res.status(401).send({ error: err.message })
-  }
-
-  res.status(500).send({ error: err.message })
+  res.status(500).send({ error: error.message })
 })
 
-function handleFatalError (err) {
-  console.error(`${chalk.red('[fatal error]')} ${err.message}`)
-  console.error(err.stack)
+function handleFatalError (error) {
+  console.error(`${chalk.red('[fatal error]')} ${error.message}`)
+  console.error(error.stack)
   process.exit(1)
 }
 

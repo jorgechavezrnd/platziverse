@@ -1,8 +1,13 @@
 'use strict'
 
+/**
+ * Para utilizar entre el agente y socket.io
+ * @param {EventEmitter} source
+ * @param {EventEmmiter} target
+ */
 function pipe (source, target) {
   if (!source.emit || !target.emit) {
-    throw TypeError("Please pass EventEmitter's as argument")
+    throw TypeError('Please pass EventEmitter\'s as arguments')
   }
 
   const emit = source._emit = source.emit
