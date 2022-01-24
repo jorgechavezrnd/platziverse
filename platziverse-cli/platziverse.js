@@ -15,7 +15,7 @@ const screen = blessed.screen()
 const agents = new Map()
 const agentMetrics = new Map()
 let extended = []
-let selected = {
+const selected = {
   uuid: null,
   type: null
 }
@@ -107,11 +107,11 @@ tree.on('select', node => {
   renderMetric()
 })
 
-function renderData() {
+function renderData () {
   const treeData = {}
   let idx = 0
 
-  for (let [uuid, val] of agents) {
+  for (const [uuid, val] of agents) {
     const title = `${val.name} - (${val.pid})`
     treeData[title] = {
       uuid,
@@ -128,7 +128,7 @@ function renderData() {
         metric: true
       }
 
-      const metricName = ` ${type} ${"".repeat(1000)} ${idx++}`
+      const metricName = ` ${type} ${''.repeat(1000)} ${idx++}`
       treeData[title].children[metricName] = metric
     })
   }
@@ -141,7 +141,7 @@ function renderData() {
   renderMetric()
 }
 
-function renderMetric() {
+function renderMetric () {
   if (!selected.uuid && !selected.type) {
     line.setData([{ x: [], y: [], title: '' }])
     screen.render()
