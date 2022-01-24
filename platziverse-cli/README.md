@@ -13,3 +13,4 @@
 ## Commands for install dependencies
 - `npm i standard --save-dev`
 - `npm install blessed blessed-contrib --save`
+- `npm install moment --save`
