@@ -21,7 +21,7 @@
     "standard": "^16.0.4"
   },
   "dependencies": {
-    "args": "^5.0.1",
-    "minimist": "^1.2.5"
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.10.1"
   }
 }
