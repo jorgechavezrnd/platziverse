@@ -9,6 +9,7 @@
 - Start cli application (in platziverse-cli): `node .\platziverse.js`
 - Start mqtt server (in platziverse-mqtt directory): `npm run start-dev`
 - Run example of platziverse agent (in platziverse-agent directory): `node .\examples\index.js`
+- For expand each agent and display the graphic for each metric, click `Enter` on any agent and any metric
 
 ## Commands for install dependencies
 - `npm i standard --save-dev`
