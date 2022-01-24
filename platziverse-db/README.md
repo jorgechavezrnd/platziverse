@@ -48,6 +48,8 @@ setupDatabase(config).then(db => {
 - Run setup script with intentional error, for see the error message using 'chalk' library: `DB_PASS='foo' npm run setup`
 - Run tests, we use 'nyc' module for code coverage, and the coverage report in HTML will be located in 'coverage/lcov-report/index.html' after run this command: `npm test`
 - Run setup database without confirmation question: `npm run setup -- --yes` or `npm run setup -- -y`
+- Run setup with error and see how longjohn works: `DB_HOST=foo npm run setup`. For Windows in cmd: `set DB_HOST=foo && npm run setup`
+- Run example for longjohn: `node example`
 
 ## Commands for test module
 - `node`
@@ -83,3 +85,4 @@ setupDatabase(config).then(db => {
 - `npm i nyc --save-dev`
 - `npm install --save-dev sinon`
 - `npm i proxyquire --save-dev`
+- `npm install --save-dev longjohn`
