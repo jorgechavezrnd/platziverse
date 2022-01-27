@@ -21,3 +21,34 @@
 - Click on `inspect` button that refers to `server.js` process
 - In `Sources`, add the `platziverse` folder to workspace if it was not already added
 - Now we can debug, for example, with breakpoints in source files of `platziverse-web` and `platziverse-agent`
+
+## Debug with visual studio code (platziverse-web or platziverse-api)
+- Create settings for debug in vscode (in folder `.vscode` and file `launch.json`)
+```json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug platziverse-web",
+            "program": "${workspaceFolder}/platziverse-web/server.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug platziverse-api",
+            "program": "${workspaceFolder}/platziverse-api/server.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        }
+    ]
+}
+```
