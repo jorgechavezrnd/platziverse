@@ -22,6 +22,7 @@
 
 ## Commands for run playbooks with ansible:
 - `ansible-playbook -i inventory.ini backend.yml --private-key ssh/deploy`
+- `ansible-playbook -i inventory.ini frontend.yml --private-key ssh/deploy`
 
 ## Command for generate ssh key in ssh directory
 - `ssh-keygen -t rsa -C "jorgechavezrnd@gmail.com - deploy"`
