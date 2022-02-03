@@ -5,7 +5,7 @@ postgresql_databases:
 postgresql_users:
   - name: platzi
     pass: platzi
-    encrypted: no
+    encrypted: yes
 postgresql_user_privileges:
   - name: platzi
     db: platziverse
